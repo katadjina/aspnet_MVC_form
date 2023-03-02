@@ -1,4 +1,30 @@
-﻿@if (!ViewContext.ModelState.IsValid)
+@using Microsoft.AspNetCore.Mvc.ModelBinding
+@if (!ViewContext.ModelState.IsValid)
+    {
+        <div>
+            There are @ViewContext.ModelState.ErrorCount error@((ViewContext.ModelState.ErrorCount > 1)? "s" : "") in your form
+            <dl>
+                @foreach (KeyValuePair<string, ModelStateEntry> modelStateError in ViewContext.ModelState)
+                {
+                    @if (modelStateError.Value.Errors.Count() > 0)
+                    {
+                        <dt>@modelStateError.Key : </dt>
+                        <dd>
+                            <ul>
+                                @foreach (ModelError error in modelStateError.Value.Errors)
+                                {
+                                    <li> @error.ErrorMessage</li>
+                                }
+                            </ul>
+                        </dd>
+                    }
+                }
+            </dl>
+        </div>
+    }
+
+
+@if (!ViewContext.ModelState.IsValid)
     {
         <div>
             There aree errors in the form submitted.
