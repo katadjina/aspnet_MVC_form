@@ -1,0 +1,18 @@
+﻿@if (!ViewContext.ModelState.IsValid)
+    {
+        <div>
+            There aree errors in the form submitted.
+        </div>
+    }
+
+<form method="post" class="form-group">
+    <div>
+        <label> E-mail : </label>
+        <input name="email" type="text" />
+    </div>
+    <div>
+        <label> Password : </label>
+        <input name="password" type="password" />
+    </div>
+    <input type="submit" value="submit" class="btn btn-primary"/>
+</form>
